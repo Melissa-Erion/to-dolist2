@@ -109,6 +109,13 @@ $(document).ready(function() {
         markTaskActive($(this).data('id'));
       }
     });
-
+  
+    // Event listener for task filter change
+    $('input[name="taskFilter"]').on('change', function() {
+      filterPreference = $(this).val();
+      getAndDisplayAllTasks();
+    });
+  
+    // Initial load of tasks
     getAndDisplayAllTasks();
-});
+  });
