@@ -50,9 +50,26 @@ $(document).ready(function() {
     });
   };
 
+  var deleteTask = function (id) {
+    $.ajax({
+      type: 'DELETE',
+      url: 'https://fewd-todolist-api.onrender.com/tasks/' + id + '?api_key=274',
+      success: function (response, textStatus) {
+        getAndDisplayAllTasks();
+      },
+      error: function (request, textStatus, errorMessage) {
+        console.log(errorMessage);
+      }
+    });
+  };
+
   
   $('#create-task').on('submit', function (e) {
     e.preventDefault();
     createTask();
+  });
+
+  $(document).on('click', '.delete', function () {
+    deleteTask($(this).data('id'));
   });
 });
